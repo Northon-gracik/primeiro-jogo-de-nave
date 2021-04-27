@@ -50,7 +50,7 @@ function start() { // Inicio da função start()
     moveinimigo1();
     moveinimigo2();
     moveamigo();
-    disparo();
+    colisao();
 
     } // Fim da função loop()
 
@@ -92,6 +92,7 @@ function start() { // Inicio da função start()
         if (jogo.pressionou[TECLA.D]) {
             
             //Chama função Disparo	
+            disparo();
         }
     
     } // fim da função movejogador()
@@ -153,20 +154,28 @@ function start() { // Inicio da função start()
         
         } //Fecha podeAtirar
      
-               function executaDisparo() {
-            posicaoX = parseInt($("#disparo").css("left"));
-            $("#disparo").css("left",posicaoX+15); 
+            function executaDisparo() {
+                posicaoX = parseInt($("#disparo").css("left"));
+                $("#disparo").css("left",posicaoX+15); 
     
-                    if (posicaoX>900) {
-                            
-                window.clearInterval(tempoDisparo);
-                tempoDisparo=null;
-                $("#disparo").remove();
-                podeAtirar=true;
+                if (posicaoX>900) {
                         
-                       }
+                    window.clearInterval(tempoDisparo);
+                    tempoDisparo=null;
+                    $("#disparo").remove();
+                    podeAtirar=true;
+                    
+                }
         } // Fecha executaDisparo()
     } // Fecha disparo()
+
+    function colisao() {
+        var colisao1 = ($("#jogador").collision($("#inimigo1")));
+        // jogador com o inimigo1
+    
+        console.log(colisao1);
+    
+    } //Fim da função colisao()
     
 
 } // Fim da função start
